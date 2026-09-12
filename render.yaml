@@ -1,0 +1,18 @@
+services:
+  - type: worker
+    name: crous-rennes-watcher
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python watcher.py"
+    envVars:
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: EMAIL_TO
+        sync: false
+      - key: CHECK_INTERVAL_MINUTES
+        value: "15"
+      - key: COOLDOWN_HOURS
+        value: "4"
